@@ -1,24 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {
+  Switch,
+  Route,
+  NavLink
+} from "react-router-dom";
+// import { NavBar } from 'react-bootstrap'
+import DiscoverMoviesPage from "./Pages/DiscoverMoviesPage"
+import AboutPage from "./Pages/AboutPage"
+import HomePage from "./Pages/HomePage"
+import MoviePage from "./Pages/MoviePage"
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Movie app!!!
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <NavBar> */}
+        <NavLink to="/about">About this website</NavLink>
+        <NavLink to="/discover">Discover new things</NavLink>
+        <NavLink exact to="/">Go Home</NavLink>
+      {/* </NavBar> */}
+      <Switch>
+        <Route exact path="/discover" component={DiscoverMoviesPage} />
+        <Route path="/discover/:imdb_id" component={MoviePage} />
+        <Route path="/about" component={AboutPage} />
+        <Route path="/" component={HomePage} />
+      </Switch>
     </div>
   );
 }
